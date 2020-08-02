@@ -1,0 +1,59 @@
+<svg viewBox="0 0 25 28" width="50" height="56"
+     xmlns="http://www.w3.org/2000/svg">
+<symbol id="star" viewBox="0 0 100 96">
+  <path d="M100,45.692L71.084,55.157L88.903,79.765L67.885,95.039L50,70.431L32.115,95.039L11.097,79.765L28.916,55.157L0,45.692L8.159,21.018L37.01,30.352L37.01,0L62.99,0L62.99,30.352L91.841,21.018L100,45.692Z"/>
+</symbol>
+
+<style>
+svg {
+  --sine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  --up-down: 3px;
+  --back-forth: 5deg;
+}
+
+#outer {
+  -webkit-transform: translateY(var(--up-down));
+  transform: translateY(var(--up-down));
+  -webkit-animation: 10s var(--sine) infinite up-down;
+  animation: 10s var(--sine) infinite up-down;
+}
+
+@keyframes up-down { 50% {
+  -webkit-transform: translateY(calc(-1 * var(--up-down)));
+  transform: translateY(calc(-1 * var(--up-down)));
+} }
+
+#inner {
+  transform-origin: center;
+  -webkit-transform: rotate(calc(-1 * var(--back-forth)));
+  transform: rotate(calc(-1 * var(--back-forth)));
+  -webkit-animation: 10s var(--sine) -6.25s infinite back-forth;
+  animation: 10s var(--sine) -6.25s infinite back-forth;
+}
+
+@keyframes back-forth { 50% {
+  -webkit-transform: rotate(var(--back-forth));
+  transform:rotate(var(--back-forth))
+} }
+
+@media (prefers-reduced-motion: reduce) {
+  #outer, #inner {
+    -webkit-transform: none;
+    transform: none;
+    -webkit-animation: none;
+    animation: none;
+  }
+}
+</style>
+
+<!-- <rect fill="none" stroke="#ff0000" width="25" height="28"/> -->
+
+<g id="outer"><g id="inner">
+<use href="#star" x="7.5" y="10.7" width="10" height="9.6"
+       transform="rotate(0,12.5,15.5) translate(0, -7)" fill="#000" />
+<use href="#star" x="7.5" y="10.7" width="10" height="9.6"
+       transform="rotate(120,12.5,15.5) translate(0, -7)" fill="#000" />
+<use href="#star" x="7.5" y="10.7" width="10" height="9.6"
+       transform="rotate(240,12.5,15.5) translate(0, -7)" fill="#000" />
+</g></g>
+</svg>
