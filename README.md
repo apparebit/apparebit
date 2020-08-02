@@ -15,4 +15,4 @@ Alas, the website generator project also serves as personal software playground.
 may just explain the current paucity of content on the website. But as my user and
 website name _apparebit_ so assuredly states in Latin: _It will appear_! 🙄
 
-#### ![an asterism](asterism.svg)  _Robert_
+#### ![an asterism](https://github.com/apparebit/apparebit/blob/master/asterism.svg)  _Robert_
