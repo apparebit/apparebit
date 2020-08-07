@@ -5,39 +5,58 @@
 </symbol>
 
 <style>
+/*
+ * If we are riding a wave of A * sin(B * x), then:
+ *   A = amplitude
+ *   B = 2pi / period
+ *
+ * The slope of the wave is:
+ *   d/dx (A * sin(B * x)) = A * d/dx sin(B * x) = AB cos(B * x)
+ *
+ * At x=0, the maximum positive slope is AB and tilt is atan AB.
+ *
+ * Unfortunately, we only have t (the time of a full period) and
+ * not x (the distance of a full period). Hence --max-tilt below
+ * is a visual guess.
+ *
+ * --phase is 3/4 period to synchronize the two animations.
+ */
+
 svg {
   --sine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  --up-down: 3px;
-  --back-forth: 5deg;
+  --period: 10s;
+  --phase: calc(-3 * var(--period) / 4);
+  --amplitude: 3px;
+  --max-tilt: 5deg;
 }
 
-#outer {
-  -webkit-transform: translateY(var(--up-down));
-  transform: translateY(var(--up-down));
-  -webkit-animation: 10s var(--sine) infinite up-down;
-  animation: 10s var(--sine) infinite up-down;
+#amplitude {
+  -webkit-transform: translateY(var(--amplitude));
+  transform: translateY(var(--amplitude));
+  -webkit-animation: var(--period) var(--sine) infinite amplitude;
+  animation: var(--period) var(--sine) infinite amplitude;
 }
 
-@keyframes up-down { 50% {
-  -webkit-transform: translateY(calc(-1 * var(--up-down)));
-  transform: translateY(calc(-1 * var(--up-down)));
+@keyframes amplitude { 50% {
+  -webkit-transform: translateY(calc(-1 * var(--amplitude)));
+  transform: translateY(calc(-1 * var(--amplitude)));
 } }
 
-#inner {
+#tilt {
   transform-origin: center;
-  -webkit-transform: rotate(calc(-1 * var(--back-forth)));
-  transform: rotate(calc(-1 * var(--back-forth)));
-  -webkit-animation: 10s var(--sine) -6.25s infinite back-forth;
-  animation: 10s var(--sine) -6.25s infinite back-forth;
+  -webkit-transform: rotate(calc(-1 * var(--max-tilt)));
+  transform: rotate(calc(-1 * var(--max-tilt)));
+  -webkit-animation: var(--period) var(--sine) var(--phase) infinite tilt;
+  animation: var(--period) var(--sine) var(--phase) infinite tilt;
 }
 
-@keyframes back-forth { 50% {
-  -webkit-transform: rotate(var(--back-forth));
-  transform:rotate(var(--back-forth))
+@keyframes tilt { 50% {
+  -webkit-transform: rotate(var(--max-tilt));
+  transform:rotate(var(--max-tilt))
 } }
 
 @media (prefers-reduced-motion: reduce) {
-  #outer, #inner {
+  #amplitude, #tilt {
     -webkit-transform: none;
     transform: none;
     -webkit-animation: none;
@@ -48,12 +67,14 @@ svg {
 
 <!-- <rect fill="none" stroke="#ff0000" width="25" height="28"/> -->
 
-<g id="outer"><g id="inner">
+<g id="amplitude">
+<g id="tilt">
 <use href="#star" x="7.5" y="10.7" width="10" height="9.6"
        transform="rotate(0,12.5,15.5) translate(0, -7)" fill="#000" />
 <use href="#star" x="7.5" y="10.7" width="10" height="9.6"
        transform="rotate(120,12.5,15.5) translate(0, -7)" fill="#000" />
 <use href="#star" x="7.5" y="10.7" width="10" height="9.6"
        transform="rotate(240,12.5,15.5) translate(0, -7)" fill="#000" />
-</g></g>
+</g>
+</g>
 </svg>
