@@ -3,7 +3,9 @@
 I'm Robert Grimm and this here is where you find some of the code I wrote as of late.
 If you want to learn more about me, my professional background in computing, as well as
 some of my other interests, I encourage you to click on over to my personal website at
-[apparebit.com](https://apparebit.com).
+[apparebit.com](https://apparebit.com). My other two domains
+[deface.info](http://deface.info) and [obscenely.gay](http://obscenely.gay) point to
+some of the highlights.
 
 Then again, you can find the
 [source code for said website](https://github.com/apparebit/apparebit.com) right around
